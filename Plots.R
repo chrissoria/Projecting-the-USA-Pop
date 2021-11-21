@@ -13,7 +13,7 @@ Klong %>%
   ggtitle("Proportion of population in each age group over time")
   
 #a bar chart showing age proportion for just 2020
-StillChart <- Klong %>% 
+StillChart <- Klong3 %>% 
   filter(year == "2270") %>%
   ggplot(aes(x = age, y = proportion, fill = age)) + 
     geom_bar(stat="identity", position = "dodge")+
@@ -51,7 +51,7 @@ SKfertility <- ggplot(Klong2, aes(x = age, y = proportion, fill = age)) +
 
 SKfertility
 
-SKfertility.animation <- USfertility +
+SKfertility.animation <- SKfertility +
   transition_states(year) +
   shadow_wake(wake_length = .01)
 
@@ -74,15 +74,16 @@ Kfertility.animation <- Kfertility +
 Kfertility.animation
 
 animate(Kfertility.animation, height = 500, width = 800, fps = 30, res = 100, 
-        duration = 10)
+        duration = 11)
 
 #Niger
 
 Nfertility <- ggplot(Klong4, aes(x = age, y = proportion, fill = age)) + 
   geom_bar(stat="identity", position = "dodge")+
-  labs(title = 'year: {closest_state}', x = 'proportion', y = 'life age') +
-  ylab("proportion")+
+  labs(title = 'year: {closest_state}', x = 'Age', y = 'Proportion') +
   coord_flip()
+
+Nfertility
 
 Nfertility.animation <- Nfertility +
   transition_states(year) +
@@ -91,7 +92,7 @@ Nfertility.animation <- Nfertility +
 Nfertility.animation
 
 animate(Nfertility.animation, height = 500, width = 800, fps = 30, res = 100, 
-        duration = 10)
+        duration = 11)
 
 #Next, I want to plot the population size of the United States, applying US rates, over time
 
