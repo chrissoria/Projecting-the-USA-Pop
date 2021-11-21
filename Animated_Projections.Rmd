@@ -1,0 +1,49 @@
+---
+title: "Animating Projecting"
+author: "Chris"
+date: "11/17/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(gganimate)
+library(gapminder)
+library(gifski)
+library(dplyr)
+```
+
+
+First, I want to create a simple plot. In this case I'm going to create a bar chart
+
+```{r cars}
+USfertility <- ggplot(Klong, aes(x = age, y = proportion, fill = age)) + 
+  geom_bar(stat="identity", position = "dodge")+
+  labs(title = 'year: {closest_state}', x = 'proportion', y = 'life age') +
+  ylab("proportion")+
+  coord_flip()
+
+USfertility
+```
+
+Next, I want to add 
+
+```{r pressure, echo=FALSE}
+USfertility.animation <- USfertility +
+  transition_states(year) +
+  shadow_wake(wake_length = .01) 
+
+animate(USfertility.animation, height = 500, width = 800, fps = 30, res = 100, 
+        duration = 11)
+
+anim_save("US_US_fertility.gif")
+```
+
+```{r}
+![US Fertility](Image PATH)
+```
+
+Next, I can add 
+
+
