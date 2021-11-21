@@ -40,15 +40,6 @@ USfertility.animation
 animate(USfertility.animation, height = 500, width = 800, fps = 30, res = 100, 
         duration = 11)
 
-#Next, I want to produce a chart of what the US would look like if it had Kenya's rates
-#But first, I want to create a column and label this data "US Rates."
-#This way I can present all on the same image, grouped
-
-Klong$Rates_Applied <- "US Rates"
-Klong2$Rates_Applied <- "SK Rates"
-Klong3$Rates_Applied <- "Kenya Rates"
-Klong4$Rates_Applied <- "Niger Rates"
-
 #Next, I want to plot based on South Korea Fertility rates
 
 SKfertility <- ggplot(Klong2, aes(x = age, y = proportion, fill = age)) + 
