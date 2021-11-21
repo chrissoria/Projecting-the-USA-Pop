@@ -26,9 +26,10 @@ Klong %>%
 
 USfertility <- ggplot(Klong, aes(x = age, y = proportion, fill = age)) + 
   geom_bar(stat="identity", position = "dodge")+
-  labs(title = 'year: {closest_state}', x = 'proportion', y = 'life age') +
-  ylab("proportion")+
+  labs(title = 'year: {closest_state}', x = 'Age', y = 'Proportion') +
   coord_flip()
+
+USfertility
 
 USfertility.animation <- USfertility +
   transition_states(year) +
@@ -37,24 +38,16 @@ USfertility.animation <- USfertility +
 USfertility.animation
 
 animate(USfertility.animation, height = 500, width = 800, fps = 30, res = 100, 
-        duration = 10)
-
-#Next, I want to produce a chart of what the US would look like if it had Kenya's rates
-#But first, I want to create a column and label this data "US Rates."
-#This way I can present all on the same image, grouped
-
-Klong$Rates_Applied <- "US Rates"
-Klong2$Rates_Applied <- "SK Rates"
-Klong3$Rates_Applied <- "Kenya Rates"
-Klong4$Rates_Applied <- "Niger Rates"
+        duration = 11)
 
 #Next, I want to plot based on South Korea Fertility rates
 
 SKfertility <- ggplot(Klong2, aes(x = age, y = proportion, fill = age)) + 
   geom_bar(stat="identity", position = "dodge")+
-  labs(title = 'year: {closest_state}', x = 'proportion', y = 'life age') +
-  ylab("proportion")+
+  labs(title = 'year: {closest_state}', x = 'Age', y = 'Proportion') +
   coord_flip()
+
+SKfertility
 
 SKfertility.animation <- USfertility +
   transition_states(year) +
@@ -63,14 +56,13 @@ SKfertility.animation <- USfertility +
 SKfertility.animation
 
 animate(SKfertility.animation, height = 500, width = 800, fps = 30, res = 100, 
-        duration = 10)
+        duration = 11)
 
 #Kenya
 
 Kfertility <- ggplot(Klong3, aes(x = age, y = proportion, fill = age)) + 
   geom_bar(stat="identity", position = "dodge")+
-  labs(title = 'year: {closest_state}', x = 'proportion', y = 'life age') +
-  ylab("proportion")+
+  labs(title = 'year: {closest_state}', x = 'Age', y = 'Proportion') +
   coord_flip()
 
 Kfertility.animation <- Kfertility +
