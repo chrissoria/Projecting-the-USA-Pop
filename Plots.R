@@ -13,13 +13,15 @@ Klong %>%
   ggtitle("Proportion of population in each age group over time")
   
 #a bar chart showing age proportion for just 2020
-Klong %>% 
-  filter(year == "2020") %>%
+StillChart <- Klong %>% 
+  filter(year == "2270") %>%
   ggplot(aes(x = age, y = proportion, fill = age)) + 
     geom_bar(stat="identity", position = "dodge")+
     ggtitle("Proportion of population in each age group")+
     ylab("proportion")+
     coord_flip()
+
+StillChart
 
 #proportion frame states by year (every 5)
 #This animation will show the changing proportions of the United States using US rates
