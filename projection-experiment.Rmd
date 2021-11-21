@@ -9,13 +9,9 @@ knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
 ```
 
-In this notebook, we will be exploring some of the concepts on population projection and stable population theory covered in class. 
 
-## Section I: Introduction to the data
 
-The aim of the first section of this lab is to introduce you to the dataset that we'll be using.
-
-The dataset has values for $_nL_x$ (person-years lived between ages $x$ and $x+n$), $_nF_x$ (age-specific fertility) and $_nK_x$ (population between ages $x$ and $x+n$) for six countries, which have different types of mortality, fertility and age structures:
+The dataset has values for $_nL_x$ (person-years lived between ages $x$ and $x+n$), $_nF_x$ (age-specific fertility) and $_nK_x$ (population between ages $x$ and $x+n$) for 4 countries, which have different types of mortality, fertility and age structures:
 
 - United States
 - S. Korea
@@ -28,7 +24,7 @@ Data are for females in 2015-2020 (nLx 2019, nKx 2020, nFx 2015-2020) and were o
 d <- read_csv("projection_data.csv")
 ```
 
-Throughout this lab, we'll be making use of the `%>%` operator. This is like a 'pipe', which takes whatever is on the left hand side and feeds it forward into a function. For example, below we are taking our data `d`, filtering it to only include Australia, and then printing the head (the first six rows).
+
 
 ```{r}
 d %>% 
@@ -36,13 +32,7 @@ d %>%
   head
 ```
 
-Notice that:
-
-- The magnitude of $_nL_x$ values suggests a radix of 100,000
-- $_nF_x$ is the age-specific birth rate per 1,000 women
-- $_nK_x$ is age-specific population in 000s
-
-To save trouble later, let's change $_nL_x$ to have a radix of 1, and $_nF_x$ to have units births per woman. 
+Transform l0 from 100,000 into 1
 
 ```{r}
 d <- d %>% 
@@ -50,10 +40,6 @@ d <- d %>%
          nFx = nFx/1000)
 ```
 
-
-### Person-years lived: $_nL_x$
-
-Let's investigate the values of $_nL_x$ by country. First, let's calculate the life expectancy at birth, $e_0$, for all countries. Remember that $$e_0 = \frac{\sum {_nL_x}}{l_0}$$
 
 To calculate in R we can use `group_by` to do the calculation separately for each country.
 
@@ -70,15 +56,6 @@ d %>%
 
 There is a 14 year difference in life expectancy in Niger compared to the US and a 20 year difference between Niger and S Korea. S Korea has over 7 years on the US. 
 
-### Fertility rates: $_nF_x$
-
-We can use the age-specific fertility rates to calculate some summary fertility measures for each country. Note that we will assume that the proportion of babies that are female (fraction of females at birth) is 0.4886. Using the information we have, we can calculate the total fertility rate (TFR), gross reproduction ratio (GRR) and net reproduction ratio (NRR). We can also calculate the mean age at childbearing ($\mu$). Remember that
-$$ TFR = \sum {_nF_x} \cdot n$$
-$$ GRR = TFR \cdot f_{fab}$$
-$$NRR = \frac{\sum {_nF_x}\cdot {_nL_x} \cdot f_{fab}}{l_0} $$
-$$
-\mu = \frac{\sum (x+2.5)\cdot {_nF_x}\cdot {_nL_x}}{\sum \cdot {_nF_x}\cdot {_nL_x}}
-$$
 
 ```{r}
 # calculate TFR, GRR and NRR by country
