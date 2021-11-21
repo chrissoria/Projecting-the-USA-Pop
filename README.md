@@ -9,3 +9,9 @@ In this project, I take the USA's population at the year 2020 (broken down by ag
 
 
 The goal is to see how these different fertility and mortality rates would impact A. The US's population size B. The US's long-term growth rate and C. The US's age structure. 
+
+# Animation
+
+Animated plots can be found in the "Plots.R" file.
+
+In order to animate, you will have to install the "gganimate" library"
