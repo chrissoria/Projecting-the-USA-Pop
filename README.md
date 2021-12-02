@@ -15,3 +15,5 @@ The goal is to see how these different fertility and mortality rates would impac
 Animated plots can be found in the "Plots.R" file.
 
 In order to animate, you will have to install the "gganimate" library"
+
+<img src='https://i.imgur.com/FozzsNB.gif' title='USA Population Projected Using USA Fertility Rate' width='' alt='Video Walkthrough' />
